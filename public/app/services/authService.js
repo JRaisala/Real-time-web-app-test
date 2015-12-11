@@ -22,7 +22,7 @@ angular.module('authService', [])
 
 	authFactory.logout = function() {
 		AuthToken.setToken();
-	}
+	} 
 
 	authFactory.isLoggedIn = function() {
 		if(AuthToken.getToken())
@@ -64,7 +64,7 @@ angular.module('authService', [])
 
 	return authTokenFactory;
 
-})
+})  
 
 
 .factory('AuthInterceptor', function($q, $location, AuthToken) {
@@ -87,7 +87,11 @@ angular.module('authService', [])
 	};
 
 	
-
+    interceptorFactory.responseError = function(response){
+        if(response.status == 403)
+            $location.path('/login');
+        return $q.reject(response);
+    }
 
 	return interceptorFactory;
 });
