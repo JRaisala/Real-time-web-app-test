@@ -5,6 +5,11 @@ angular.module('storyService', [])
 
 
 	var storyFactory = {};
+    
+    
+    storyFactory.allStories = function() {
+        return $http.get('/api/all_stories');
+    }
 
 
 	storyFactory.create = function(storyData) {
@@ -20,10 +25,9 @@ angular.module('storyService', [])
 	return storyFactory;
 
 
-});
+})
 
 
- /*
 .factory('socketio', function($rootScope) {
 
 	var socket = io.connect();
@@ -51,4 +55,4 @@ angular.module('storyService', [])
 
 	};
 
-}); */
+}); 
