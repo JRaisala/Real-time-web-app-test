@@ -5,7 +5,7 @@ angular.module('appRoutes', ['ngRoute'])
 
 	$routeProvider
 
-		.when('/', {
+		.when('/allStories', {
 			templateUrl: 'app/views/pages/home.html',
             controller: 'MainController',
             controllerAs: 'main'
@@ -18,8 +18,20 @@ angular.module('appRoutes', ['ngRoute'])
             templateUrl: 'app/views/pages/signup.html'
     }) 
         
-       .when('/allStories', {
+       .when('/', {
 			templateUrl: 'app/views/pages/allStories.html',
+			controller: 'AllStoriesController',
+			controllerAs: 'story',
+			resolve: {
+				stories: function(Story) {
+					return Story.allStories();
+				}
+			}
+
+		})
+    
+     .when('/story', {
+			templateUrl: 'app/views/pages/oneStory.html',
 			controller: 'AllStoriesController',
 			controllerAs: 'story',
 			resolve: {
